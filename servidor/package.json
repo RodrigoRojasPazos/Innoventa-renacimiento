@@ -1,0 +1,22 @@
+{
+  "name": "servidor",
+  "version": "1.0.0",
+  "description": "Proyecto Web PosInnoVenta para restaurantes. Equipo InnoVenta: Paola Reyes, Estrella Dzib, Alexis Ake, Rodrigo Rojas y Cedeño Raúl.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "InnoVenta",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.15.2",
+    "nodemon": "^3.1.7"
+  }
+}

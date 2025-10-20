@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+.fondo-demo{
+  background-color: #050038;
+  padding-bottom: 25px;
+  height: 569px;
+}
+
+.text-azul{
+  color: #03C7FD;
+}
+
+.section-container {
+  background-color: #050038; 
+  padding: 2rem;
+  padding-top: 2.5rem;
+}
+  
+.section-title {
+  font-size: 64px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  color: #FFC700; 
+  font-family: 'Oswald';  
+}
+
+.section-text {
+  color: #EDECF4;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-family: 'Open Sans';
+}
+
+.btn-demo {
+  background-color: #BDE5F9;
+  color: black;
+  border-radius: 40px;
+  padding: 1rem 1.3rem;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: 'Open Sans';
+  width: 332px;
+  height: 74px;
+} 
+
+.btn-demo:hover{
+  background-color: #91d1f1;
+}
+
+.fondo-oscuro {
+  filter: brightness(0.5); 
+  transition: filter 0.3s ease; 
+}
+  
+.image-section img {
+  width: 480px;
+  height: 446px;
+  border-radius: 10px;
+  object-fit: cover;
+  transform: translate(15%,4%);
+}
+
+.text-start-demo{
+  color: rgba(255, 199, 0, 1);
+}
+
+.demo-text{
+  padding-top: 25px;
+}
+
+
+.custom-modal-demo .modal-content {
+  background: transparent; 
+  border: none; 
+  box-shadow: none;
+  margin-left: -235px;
+}
+
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.9); 
+}
+
+/*Responsivo*/
+
+@media (max-width: 500px) {
+
+  .fondo-demo {
+    background-color: #070C33;
+    height: 800px;
+  }
+
+  .section-container {
+    background-color: #050038; 
+    padding: 15px;
+    padding-top: 1rem;
+  }
+    
+
+  .demo-text{
+    padding-top: 0px;
+  }
+  
+  .section-title {
+    font-size: 48px;
+    font-weight: 500;
+    color: #FFC700;
+    font-family: 'Oswald';
+  }
+  
+  .section-text {
+    color: #EDECF4;
+    margin-bottom: 20px;
+    font-size:24px;
+    text-align:left;
+    align-items: center;
+    padding-left: 60px;
+    padding-right: 60px;
+    font-weight: 400;
+    font-family: 'Open Sans';
+  }
+  
+  .btn-demo {
+    width: 160px;
+    height: 32px;
+    background-color: #BDE5F9;
+    color: #070C33;
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 0.2rem 0.2rem;
+    font-weight: 600;
+    margin-left: 70px;
+    margin-right: 50px;
+  }
+  
+  .image-section img {
+    width: 281px;
+    height: 287px;
+    border-radius: 10px;
+    object-fit: cover;
+    transform: translate(10%, 10%);
+  }
+}

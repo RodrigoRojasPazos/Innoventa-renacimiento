@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+.fondo-casos{
+    background-color: #A1E0FF;
+}
+
+.seccion-casos {
+    background-color:#A1E0FF;
+}
+
+.titulo-seccion-caso {
+    font-size: 64px;
+    font-weight: 500;
+    color: #070C33;
+    font-family: 'Oswald';
+}
+
+.premium-caso {
+    color: #FFC700;
+}
+
+.caso-top-text{
+    color: #FFC700;
+    font-weight: 800;
+    font-size: 32px;
+    font-family: 'Open Sans';
+    margin-bottom: -0px;
+}
+
+.subtitulo-seccion-caso {
+    font-size: 20px;
+    font-weight: 400;
+    color: #070C33;
+    padding-bottom: 15px;
+    font-family: 'Open Sans';
+}
+
+.caso-card {
+    background-color: rgba(237, 236, 244, 1);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    height: 690px;
+    width: 414px;
+}
+
+.caso-card .card-title-caso {
+    font-size: 16px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    margin-top: -5px;
+    color: #070C33;
+}
+
+.caso-card .card-text {
+    color: #070C33;
+    margin-top: -10px;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+}
+
+.caso-card .card-text2 {
+    color: #070C33;
+    margin-top: -25px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+}
+
+.caso-alert{
+    color: #FFC60C;
+    font-size: 40px;
+    font-family: 'Oswald';
+    font-weight: 600;
+}
+
+.caso-icon{
+    font-size: 50px;
+    color: #070C33;
+}
+
+.caso-link{
+    margin-top: 20px;
+    color: #070C33;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: 'Oswald';
+    text-decoration: underline;
+}
+
+.caso-card .btn-link:hover {
+    text-decoration: underline;
+}
+
+.btn-warning {
+    background-color: #FFC60C;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.caso-img{
+    width: 270px; 
+    height: 260px;
+}
+
+.btn-warning-caso{
+    background-color: #FFC60C;
+    font-family: 'Open Sans';
+    font-weight: 700;
+    border-radius: 40px;
+    width: 456px;
+    height: 72px;
+    font-size: 32px;
+    color: #070C33;
+}
+
+.btn-warning-caso:hover{
+    background-color: #f0bc00;
+    transition: .5s;
+}
+
+.caso-card:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 450px) {
+    .titulo-seccion-caso {
+        font-size: 32px;
+        font-weight: bold;
+        color: #070C33;
+        font-family: 'Oswald';
+    }
+
+    .caso-mobile-color{
+        color: #FFC700;
+    }
+
+    .subtitulo-seccion-caso {
+        font-size: 13px;
+        font-weight: 400;
+        color: #070C33;
+        padding-bottom: 15px;
+        font-family: 'Open Sans';
+    }
+
+    .btn-warning-caso {
+        margin-left: 0px;
+    }
+
+    .card-title-caso{
+        font-size: 16px;
+    }
+    
+    .btn-warning-caso{
+        width: 229px;
+        height: 40px;
+        font-size: 24px;
+        font-weight: 700;
+        font-family: 'Open Sans';
+    }
+
+    .fondo-casos{
+        width: 432px;
+    }
+}

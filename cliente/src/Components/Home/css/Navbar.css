@@ -1,0 +1,130 @@
+
+header{
+  display: flex;
+  align-items: center;
+  background-color: #050038;
+  justify-content: space-between;
+  height: 97px;
+  padding: 8px 150px; /*Aqui modificar despues del padding del ancho (252px): alto, ancho*/
+}
+
+.logo{
+  width: 200px;
+  margin-left: 140px;
+}
+
+
+.nav-list{
+  list-style-type: none;
+  display: flex;
+  gap: 32px;
+  padding-top: 20px;
+  text-decoration: none;
+  text-decoration-color: #FFC700;
+  z-index: 1000;
+}
+
+.navbar-list{
+  color: #ffff;
+  text-decoration: none;
+  text-decoration-color: #050038;
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.nav-list li a{
+  text-decoration: none;
+  color: #ffffff;
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 20px;
+}
+
+.abrir-menu, .cerrar-menu{
+  display: none;
+}
+
+
+.fondo-boton{
+  background-color: #FFC60C;
+  border-radius: 40px;
+  width: 179px;
+  height: 56px;
+  margin-right: 25px;
+}
+
+.letra-boton{
+  color: #02033B;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+  header{
+    height: 119px;
+    width: 432px;
+  }
+
+  .logo{
+    margin-left: -120px;
+  }
+  
+  .abrir-menu, .cerrar-menu{
+    display: block;
+    border: 0;
+    font-size: 40px;
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .abrir-menu{
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .nav-1{
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    height: 400px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 1rem;
+    background-color: #050038;
+    padding: 2rem;
+    box-shadow: 0 0 0 2000vmax rgba(1, 3, 40, 0.5);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+  }
+
+  .nav-1.visible{
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .desactivacion-boton{
+    display: none;
+  }
+
+  .nav-list{
+    flex-direction: column;
+    align-items: end;
+  }
+}
