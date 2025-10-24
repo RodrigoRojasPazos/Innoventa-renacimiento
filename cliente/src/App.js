@@ -10,7 +10,7 @@ import Resenas from "./Components/Home/Resenas";
 import Elite from "./Components/Home/Elite";
 import Formulario from "./Components/Home/Formulario";
 import { Form } from "react-bootstrap"; 
-import './App.css';
+// import './App.css'; // Comentado temporalmente para evitar conflictos
 import RecoverPassword from "./Components/Login/RecoverPassword";
 import Beneficios from "./Components/Home/Beneficios";
 import Nosotros from "./Components/Home/Nosotros";

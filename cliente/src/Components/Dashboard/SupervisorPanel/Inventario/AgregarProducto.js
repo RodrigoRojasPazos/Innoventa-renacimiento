@@ -1,6 +1,4 @@
 ﻿import React, { useState } from "react";
-import "./css_Inventario/AgregarProducto.css";
-import { Link } from "react-router-dom";
 
 function AgregarProducto({ onRegresar}){
 
@@ -48,66 +46,82 @@ function AgregarProducto({ onRegresar}){
     };
 
     return(
-        <section className="panel">
-        <form  className="formulario" onSubmit={handleSubmit}  style={{ borderRadius: "24px" }}>
-            <div className="caja-informacion separacion-cajaI-cajaB ">
-                <div className="caja-titulo margen-vertical">
-                    <p className="Titulo">Información del producto</p>
-                </div>
-                <div className="caja-grandes margen-vertical">
-                    <div className="label-grande">
-                        <label  className="estilo-label">Nombre del producto:</label>
+        <div className="p-8">
+            <div className="bg-white rounded-lg shadow p-8 max-w-3xl">
+                <form onSubmit={handleSubmit}>
+                    {/* Título */}
+                    <div className="mb-8">
+                        <h2 className="text-2xl font-light text-gray-800">Información del producto</h2>
                     </div>
-                    <input type="text" 
-                            className="estilo-input input-grande" 
+
+                    {/* Nombre del producto */}
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Nombre del producto:
+                        </label>
+                        <input 
+                            type="text" 
                             id="nombre" 
                             value={formData.nombre} 
                             onChange={handleChanges}
-                    />
-                </div>
-                <div className="caja-medianos margen-vertical">
-                    <div className="margen-horizontal">
-                        <div className="label-mediano margen-entre-medianas">
-                            <label className="estilo-label">Stock entrante:</label>
-                        </div>
-                        <input type="number" 
-                                min="0" 
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                            required
+                        />
+                    </div>
+
+                    {/* Stock entrante y Stock mínimo */}
+                    <div className="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Stock entrante:
+                            </label>
+                            <input 
+                                type="number" 
                                 id="stock" 
-                                max="100" 
+                                min="0" 
                                 step="1" 
-                                className="estilo-input input-mediano" 
                                 value={formData.stock} 
                                 onChange={handleChanges}
-                        />
-                    </div>
-                    <div>
-                        <div className="label-mediano margen-entre-medianas">
-                            <label className="estilo-label">Stock mínimo:</label>
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                                required
+                            />
                         </div>
-                        <input type="number"
-                            id="stock_minimo"
-                               min="0" 
-                               max="100" 
-                               step="1"  
-                               className="estilo-input input-mediano" 
-                               value={formData.stock_minimo} 
-                               onChange={handleChanges}
-                        />
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Stock mínimo:
+                            </label>
+                            <input 
+                                type="number"
+                                id="stock_minimo"
+                                min="0" 
+                                step="1"  
+                                value={formData.stock_minimo} 
+                                onChange={handleChanges}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a2744]"
+                                required
+                            />
+                        </div>
                     </div>
-                </div>
-                
+
+                    {/* Botones */}
+                    <div className="flex justify-end gap-4">
+                        <button 
+                            type="button" 
+                            onClick={onRegresar}
+                            className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
+                        >
+                            Regresar
+                        </button>
+                        <button 
+                            type="submit" 
+                            className="px-6 py-2 bg-[#1a2744] text-white rounded-lg hover:bg-[#2a3854] transition"
+                        >
+                            Ingresar datos
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div className="caja-botones">
-                <div className="caja-boton separacion-botones">
-                    <button type="button" className="boton-regresar" onClick={onRegresar}>Regresar</button>
-                
-                </div>
-                <div className="caja-boton">
-                    <button type="submit" value="Ingresa" className="boton-ingresar">Ingresar datos</button>
-                </div>
-            </div>
-        </form>
-    </section>
+        </div>
     )
 }
 

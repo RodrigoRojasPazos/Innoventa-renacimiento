@@ -1,8 +1,8 @@
 ﻿import React, { useState } from "react";
-import "./css/InicioCajero.css";
+// import "./css/InicioCajero.css"; // Eliminado
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css"; 
+// import "bootstrap/dist/css/bootstrap.min.css"; // Comentado para evitar conflictos
+// import "bootstrap-icons/font/bootstrap-icons.css"; // Comentado para evitar conflictos
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 
