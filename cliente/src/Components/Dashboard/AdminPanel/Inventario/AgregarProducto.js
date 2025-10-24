@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import "./css_Inventario/AgregarProducto.css";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,7 @@ function AgregarProducto({ onRegresar}){
         e.preventDefault();
 
         try{
-            const response = await fetch("http://localhost:4000/agregar-producto",{
+            const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/agregar-producto`,{
                 method: 'POST',
                 headers:{
                     "Content-Type": "application/json",

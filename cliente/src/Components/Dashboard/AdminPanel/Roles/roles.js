@@ -1,4 +1,4 @@
-import ClientAxios from "../../../../Config/axios";
+﻿import ClientAxios from "../../../../Config/axios";
 import React, { useEffect, useState, useMemo } from "react";
 import DataTable from "react-data-table-component";
 import { Dropdown, DropdownButton } from "react-bootstrap";
@@ -18,7 +18,7 @@ function RolesPanel() {
     ]);
     const [tableKey, setTableKey] = useState(0);
 
-    const URL = "http://localhost:4000/getRoles";
+    const URL = `${process.env.REACT_APP_API_URL || '/api'}/getRoles`;
 
     const showData = async () => {
         const response = await fetch(URL);

@@ -1,4 +1,4 @@
-import './css_Ordenes/ordenes_ventas.css';
+﻿import './css_Ordenes/ordenes_ventas.css';
 import React, { useEffect, useState } from 'react';
 import CardPlatillo from './CardPlatillo';
 import CardOrdenes from './CardOrdenes';
@@ -63,11 +63,11 @@ function OrdenesVentasPanel() {
     useEffect(() => {
         const fetchPlatillos = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/getPlatillos');
+                const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getPlatillos`);
 
                 const datos = response.data.map((platillo) => ({
                     ...platillo,
-                    imagen: `http://localhost:4000${platillo.img}`,
+                    imagen: `${process.env.REACT_APP_API_URL || '/api'}${platillo.img}`,
                 }));
                 setPlatillos(datos);
             } catch (error) {
@@ -87,7 +87,7 @@ function OrdenesVentasPanel() {
     useEffect(() => {
         const fetchOrdenesEnProceso = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/getPedidosEnProceso');
+                const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getPedidosEnProceso`);
                 const datos = response.data.map((orden) => ({
                     numero: orden.id,
                     mesa: orden.numeroMesa,
@@ -137,7 +137,7 @@ function OrdenesVentasPanel() {
         }
 
         try {
-            const response = await axios.post('http://localhost:4000/crear-pedido', pedidoData);
+            const response = await axios.post(`${process.env.REACT_APP_API_URL || '/api'}/crear-pedido`, pedidoData);
 
             if (response.status === 200) {
                 Swal.fire({
@@ -167,7 +167,7 @@ function OrdenesVentasPanel() {
 
     const fetchOrdenesEnProceso = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/getPedidosEnProceso');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getPedidosEnProceso`);
             const datos = response.data.map((orden) => ({
                 numero: orden.id,
                 mesa: orden.numeroMesa,
@@ -189,7 +189,7 @@ function OrdenesVentasPanel() {
             console.log('ID Pedido:', idPedido);
             console.log('Nuevo Estado:', nuevoEstado);
 
-            const url = `http://localhost:4000/pedidos/${idPedido}/estado`;
+            const url = `${process.env.REACT_APP_API_URL || '/api'}/pedidos/${idPedido}/estado`;
 
 
             const response = await axios.put(url, { estado: nuevoEstado });

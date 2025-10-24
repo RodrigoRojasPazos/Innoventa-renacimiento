@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Backend - Node.js/Express
+  backend:
+    build:
+      context: ./servidor
+      dockerfile: Dockerfile
+    container_name: innoventa-backend
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - DBHOST=${DBHOST}
+      - DBUSER=${DBUSER}
+      - DBPASS=${DBPASS}
+      - DBPORT=${DBPORT}
+      - DBNAME=${DBNAME}
+      - NODE_ENV=production
+    volumes:
+      # Volumen para persistir las imágenes subidas
+      - ./servidor/uploads:/app/uploads
+    networks:
+      - innoventa-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:4000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend - React
+  frontend:
+    build:
+      context: ./cliente
+      dockerfile: Dockerfile
+    container_name: innoventa-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - innoventa-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  innoventa-network:
+    driver: bridge
+
+volumes:
+  uploads-data:

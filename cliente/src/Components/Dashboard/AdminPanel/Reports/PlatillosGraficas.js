@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+﻿import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css"; // Asegúrate de incluir Bootstrap
@@ -12,10 +12,10 @@ function ProductosYPlatillos() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const productosResponse = await axios.get("http://localhost:4000/productos-bajo-stock");
+                const productosResponse = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/productos-bajo-stock`);
                 setProductosBajoStock(productosResponse.data);
 
-                const platillosResponse = await axios.get("http://localhost:4000/platillos-mas-vendidos");
+                const platillosResponse = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/platillos-mas-vendidos`);
                 setPlatillosMasVendidos(platillosResponse.data);
             } catch (error) {
                 console.error("Error al cargar datos: ", error);

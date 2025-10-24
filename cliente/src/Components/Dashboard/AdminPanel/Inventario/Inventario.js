@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import DataTable from 'react-data-table-component';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -15,7 +15,7 @@ function InventarioPanel() {
     const [mostrarEditarProducto, setMostrarEditarProducto] = useState(false);
     const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
-    const URL = 'http://localhost:4000/getInventario';
+    const URL = `${process.env.REACT_APP_API_URL || '/api'}/getInventario`;
 
     const showData = async () => {
         const response = await fetch(URL);
@@ -26,7 +26,7 @@ function InventarioPanel() {
 
     const fetchProductoById = async (id) => {
         try {
-            const response = await fetch(`http://localhost:4000/get-producto-id/${id}`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/get-producto-id/${id}`);
             const data = await response.json();
             if (data.length > 0) {
                 setProductoSeleccionado(data[0]);

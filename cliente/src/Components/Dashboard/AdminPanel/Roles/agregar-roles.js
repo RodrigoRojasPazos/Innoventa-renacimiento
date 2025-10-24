@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import "./css_roles/Agregar_Roles.css";
 import Swal from "sweetalert2";
 
@@ -19,7 +19,7 @@ function AgregarRol({ onRegresar }) {
         e.preventDefault();
 
         try{
-            const response = await fetch("http://localhost:4000/postRoles", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/postRoles`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

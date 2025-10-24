@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -17,7 +17,7 @@ function Login() {
 
     const goTo = useNavigate();
 
-    const URL = 'http://localhost:4000/login-list';
+    const URL = `${process.env.REACT_APP_API_URL || '/api'}/login-list`;
 
     useEffect(() => {
         showData();
@@ -37,7 +37,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:4000/login', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

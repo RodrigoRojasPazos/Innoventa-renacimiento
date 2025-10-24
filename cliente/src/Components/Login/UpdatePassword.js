@@ -1,4 +1,4 @@
-import "./UpdatePassword.css";
+﻿import "./UpdatePassword.css";
 import Logo from "./logo-login.png";
 import React, { useState } from "react";
 import axios from "axios";
@@ -23,7 +23,7 @@ function UpdatePassword(){
         }
 
         try {
-            const response = await axios.post("http://localhost:4000/login-update", {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL || '/api'}/login-update`, {
                 usuario_nombre: usuario,
                 nueva_password: nuevaPassword,
             });

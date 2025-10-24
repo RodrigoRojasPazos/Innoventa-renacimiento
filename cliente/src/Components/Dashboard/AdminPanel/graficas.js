@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Bar, Line, Pie, Radar, Doughnut, PolarArea, Bubble, Scatter } from "react-chartjs-2";
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, LineElement, PointElement, ArcElement, CategoryScale, LinearScale, RadialLinearScale, Filler, BubbleController, ScatterController } from "chart.js";
 

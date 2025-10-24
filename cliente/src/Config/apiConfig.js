@@ -1,6 +1,7 @@
-// Configuración centralizada de la API
+﻿// Configuración centralizada de la API
 const API_CONFIG = {
-    BASE_URL: 'http://localhost:4000',
+    // En producción usa /api (nginx redirige), en desarrollo usa REACT_APP_API_URL
+    BASE_URL: process.env.REACT_APP_API_URL || '/api',
     ENDPOINTS: {
         // Auth
         LOGIN: '/login',

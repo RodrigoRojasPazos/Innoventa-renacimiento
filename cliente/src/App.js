@@ -1,4 +1,4 @@
-import NavBar from "./Components/Home/Navbar";
+﻿import NavBar from "./Components/Home/Navbar";
 import Presentacion from "./Components/Home/Presentacion";
 import Funcionalidades from "./Components/Home/Funcionalidades";
 import Demo from "./Components/Home/Demo";

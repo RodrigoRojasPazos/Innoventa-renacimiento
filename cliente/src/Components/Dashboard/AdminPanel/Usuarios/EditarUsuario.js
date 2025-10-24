@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import ClientAxios from "../../../../Config/axios";
 import "./css_Usuario/AgregarUsuario.css";
@@ -33,8 +33,8 @@ function EditarUsuario({ usuarioSeleccionado, onRegresar }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const empleadosResponse = await fetch("http://localhost:4000/getEmpleados");
-                const rolesResponse = await fetch("http://localhost:4000/getRoles");
+                const empleadosResponse = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/getEmpleados`);
+                const rolesResponse = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/getRoles`);
 
                 setEmpleados(await empleadosResponse.json());
                 // setRestaurantes([{pk_restaurante: 1, nombre: 'Default'}]); // Default if needed

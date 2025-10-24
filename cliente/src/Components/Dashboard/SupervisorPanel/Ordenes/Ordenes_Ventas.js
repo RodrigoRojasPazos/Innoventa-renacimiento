@@ -1,5 +1,5 @@
-
-import React, { useEffect, useState} from 'react';
+﻿import './css_Ordenes/ordenes_ventas.css';
+import React, { useEffect, useState } from 'react';
 import CardPlatillo from './CardPlatillo';
 import CardOrdenes from './CardOrdenes';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2';
 
-function OrdenesVentasPanel(){
+function OrdenesVentasPanel() {
 
     const [busqueda, setBusqueda] = useState('');
     const [ordenes, setOrdenes] = useState([]);
@@ -16,7 +16,9 @@ function OrdenesVentasPanel(){
     const [platillos, setPlatillos] = useState([]);
     const [cliente, setCliente] = useState('');
     const [mesa, setMesa] = useState('');
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Entradas');    const colores = ["color-1", "color-2", "color-3"];
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Entradas');
+
+    const colores = ["color-1", "color-2", "color-3"];
 
     //MODAL, NO OLVIDAR
     const [showModal, setShowModal] = useState(false);
@@ -29,8 +31,8 @@ function OrdenesVentasPanel(){
     };
 
     const platillosFiltrados = platillos
-    .filter(platillo => platillo.categoria === categoriaSeleccionada)
-    .filter(platillo => platillo.nombre.toLowerCase().includes(busqueda.toLowerCase()));
+        .filter(platillo => platillo.categoria === categoriaSeleccionada)
+        .filter(platillo => platillo.nombre.toLowerCase().includes(busqueda.toLowerCase()));
 
     const handleCategoriaChange = (categoria) => {
         setCategoriaSeleccionada(categoria);
@@ -39,21 +41,21 @@ function OrdenesVentasPanel(){
     const handleAddToCart = (platillo) => {
         setCarrito((prevCarrito) => {
             const existe = prevCarrito.find(item => item.id === platillo.id);
-            if(existe) {
+            if (existe) {
                 return prevCarrito.map(item =>
                     item.id === platillo.id
-                        ? {...item, cantidad: item.cantidad + 1}
+                        ? { ...item, cantidad: item.cantidad + 1 }
                         : item
                 );
             }
-            return [...prevCarrito, {...platillo, cantidad: 1}];
+            return [...prevCarrito, { ...platillo, cantidad: 1 }];
         });
     };
 
     const handleRemoveFromCart = (id) => {
         setCarrito((prevCarrito) => {
             return prevCarrito
-                .map(item => (item.id === id ? {...item, cantidad: item.cantidad - 1} : item))
+                .map(item => (item.id === id ? { ...item, cantidad: item.cantidad - 1 } : item))
                 .filter(item => item.cantidad > 0);
         });
     };
@@ -61,11 +63,11 @@ function OrdenesVentasPanel(){
     useEffect(() => {
         const fetchPlatillos = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/getPlatillos');
-                
+                const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getPlatillos`);
+
                 const datos = response.data.map((platillo) => ({
                     ...platillo,
-                    imagen: `http://localhost:4000${platillo.img}`, 
+                    imagen: `${process.env.REACT_APP_API_URL || '/api'}${platillo.img}`,
                 }));
                 setPlatillos(datos);
             } catch (error) {
@@ -85,13 +87,13 @@ function OrdenesVentasPanel(){
     useEffect(() => {
         const fetchOrdenesEnProceso = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/getPedidosEnProceso');
+                const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getPedidosEnProceso`);
                 const datos = response.data.map((orden) => ({
                     numero: orden.id,
                     mesa: orden.numeroMesa,
                     estado: orden.estado,
-                    colorClase: orden.colorClase, 
-                    platillos: orden.platillos || [], 
+                    colorClase: orden.colorClase,
+                    platillos: orden.platillos || [],
                     total: orden.monto || 0,
                     clientet: orden.cliente,
                 }));
@@ -100,13 +102,13 @@ function OrdenesVentasPanel(){
                 console.error('Error al obtener las órdenes:', error);
             }
         };
-    
+
         fetchOrdenesEnProceso();
     }, []);
 
     //CREAR ORDEN
     const handleOrderSubmit = async () => {
-        if(!cliente || !mesa || carrito.length === 0){
+        if (!cliente || !mesa || carrito.length === 0) {
             Swal.fire({
                 icon: 'error',
                 title: 'Campos obligatorios',
@@ -117,7 +119,7 @@ function OrdenesVentasPanel(){
 
         const nuevoIndiceColor = ordenes.length % colores.length;
 
-        const nuevoOrden ={
+        const nuevoOrden = {
             numero: ordenes.length + 1,
             mesa: mesa,
             estado: 'En proceso',
@@ -134,10 +136,10 @@ function OrdenesVentasPanel(){
             usuarioId: 1,
         }
 
-        try{
-            const response = await axios.post('http://localhost:4000/crear-pedido', pedidoData);
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL || '/api'}/crear-pedido`, pedidoData);
 
-            if(response.status === 200){
+            if (response.status === 200) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Pedido creado',
@@ -149,10 +151,10 @@ function OrdenesVentasPanel(){
                 setCarrito([]);
                 setCliente('');
                 setMesa('');
-            }else{
+            } else {
                 alert("Hubo un problema al crear el pedido. Intenta nuevamente.");
             }
-        }catch(error){
+        } catch (error) {
             console.error("Error al enviar el pedido al servidor: ", error);
             Swal.fire({
                 icon: 'error',
@@ -165,7 +167,7 @@ function OrdenesVentasPanel(){
 
     const fetchOrdenesEnProceso = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/getPedidosEnProceso');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getPedidosEnProceso`);
             const datos = response.data.map((orden) => ({
                 numero: orden.id,
                 mesa: orden.numeroMesa,
@@ -183,16 +185,16 @@ function OrdenesVentasPanel(){
 
     const handleChangeEstado = async (idPedido, nuevoEstado) => {
         try {
-            // Verifica que los datos sean correctos antes de enviar la solicitud
+
             console.log('ID Pedido:', idPedido);
             console.log('Nuevo Estado:', nuevoEstado);
-    
-            const url = `http://localhost:4000/pedidos/${idPedido}/estado`;
-    
-            // Realiza la solicitud PUT para actualizar el estado del pedido
+
+            const url = `${process.env.REACT_APP_API_URL || '/api'}/pedidos/${idPedido}/estado`;
+
+
             const response = await axios.put(url, { estado: nuevoEstado });
-            
-            // Verifica si la respuesta es exitosa
+
+
             if (response.status === 200) {
                 Swal.fire({
                     icon: 'success',
@@ -201,7 +203,7 @@ function OrdenesVentasPanel(){
                     timer: 2000,
                     showConfirmButton: false,
                 });
-    
+
                 await fetchOrdenesEnProceso();
             } else {
                 Swal.fire({
@@ -211,7 +213,7 @@ function OrdenesVentasPanel(){
                 });
             }
         } catch (error) {
-            // Maneja cualquier error en la solicitud
+
             console.error('Error al actualizar el estado del pedido:', error);
             Swal.fire({
                 icon: 'error',
@@ -221,34 +223,34 @@ function OrdenesVentasPanel(){
         }
     };
 
-    return(
+    return (
         <div className='row panel-ordenes-principal'>
-            
+
             <div className='ordenes-ventas-panel col-9'>
 
                 <div className='row'>
-                <div className="barra-busqueda">
-    <input
-        type="text"
-        placeholder="Buscar platillo..."
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-        className="input-busqueda"
-    />
-</div>
+                    <div className="barra-busqueda">
+                        <input
+                            type="text"
+                            placeholder="Buscar platillo..."
+                            value={busqueda}
+                            onChange={(e) => setBusqueda(e.target.value)}
+                            className="input-busqueda"
+                        />
+                    </div>
                     <div className='panel-ordenes-statu col-12'>
-                        <CardOrdenes ordenes={ordenes} onShowDetalle={handleShow} className="ordemes-scrollable"/>
+                        <CardOrdenes ordenes={ordenes} onShowDetalle={handleShow} className="ordemes-scrollable" />
                     </div>
 
                     <div className="categorias">
-                            <button onClick={() => handleCategoriaChange('Entradas')}>Entradas<i className="bi bi-1-circle icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Sopas')}>Sopas<i className="bi bi-egg-fried icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Platos Fuertes')}>Platos Fuertes<i className="bi bi-piggy-bank-fill icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Ensaladas')}>Ensaladas<i className="bi bi-flower3 icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Postres')}>Postres<i className="bi bi-cake2-fill icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Bebidas')}>Bebidas<i className="bi bi-cup-straw icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Especialidades')}>Especialidades<i className="bi bi-star-fill icono-categoria"></i></button>
-                            <button onClick={() => handleCategoriaChange('Desayunos')}>Desayunos<i className="bi bi-sunrise icono-categoria"></i></button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Entradas')}>Entradas</button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Sopas')}>Sopas</button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Platos Fuertes')}>Platos Fuertes</button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Ensaladas')}>Ensaladas</button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Postres')}>Postres</button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Bebidas')}>Bebidas</button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Especialidades')}>Especialidades</button>
+                        <button className='categorias-btn' onClick={() => handleCategoriaChange('Desayunos')}>Desayunos</button>
                     </div>
 
                     <div className="ordenes-contenido">
@@ -256,7 +258,7 @@ function OrdenesVentasPanel(){
 
                         {/* Lista de platillos */}
                         <div className="lista-platillos">
-                            {platillosFiltrados.map((platillo) =>(
+                            {platillosFiltrados.map((platillo) => (
                                 <CardPlatillo
                                     key={platillo.id}
                                     platillo={platillo}
@@ -264,8 +266,8 @@ function OrdenesVentasPanel(){
                                 />
                             ))}
                         </div>
-                    </div>  
-                </div>        
+                    </div>
+                </div>
             </div>
 
             <div className="col-3">
@@ -292,14 +294,14 @@ function OrdenesVentasPanel(){
                         {carrito.map(item => (
                             <div key={item.id} className='carrito-item row'>
                                 <div className='col-1'>
-                                    <img src={item.imagen} alt={item.nombre} className='carrito-item-img'/>
+                                    <img src={item.imagen} alt={item.nombre} className='carrito-item-img' />
                                 </div>
                                 <div className='col-8 carrito-item-name-price mt-4'>
                                     <p className='carrito-item-name'>{item.nombre}</p>
-                                    <p className='carrito-item-price'>${item.precio}</p>                    
+                                    <p className='carrito-item-price'>${item.precio}</p>
                                 </div>
                                 <div className='carrito-options'>
-                                    <i onClick={() => handleRemoveFromCart(item.id)}  className="bi bi-dash-circle-fill carrito-btn-minus"></i>
+                                    <i onClick={() => handleRemoveFromCart(item.id)} className="bi bi-dash-circle-fill carrito-btn-minus"></i>
                                     <span className='carrito-item-number'>{item.cantidad}</span>
                                     <i onClick={() => handleAddToCart(item)} className="bi bi-plus-circle-fill carrito-btn-plus"></i>
                                 </div>
@@ -307,72 +309,75 @@ function OrdenesVentasPanel(){
                         ))}
                     </div>
                 </div>
-                
+
                 <div className="carrito-total">
                     <div className="ticket">
                         <a>ㅤ</a>
-                        <br/>
+                        <br />
                         <a>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</a>
                         <p>Total:</p>
                         <h4>${total.toFixed(2)}</h4>
                     </div>
-                    
+
                 </div>
 
                 <div>
                     <button className='carrito-btn-agregar' onClick={handleOrderSubmit}>Continuar</button>
                 </div>
-            </div> 
+            </div>
 
 
             {/*MODAL, AQUI YA LO USAMOS*/}
-            <Modal show={showModal} onHide={handleClose} centered className="custom-modals">
-            <Modal.Header closeButton className="custom-modal-header">
-                <Modal.Title>
-                    <i className="bi bi-receipt-cutoff"></i> Detalles del Pedido
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body className="custom-modal-body">
-                {ordenSeleccionada ? (
-                    <div>
-                        <p><strong>Orden N°:</strong> {ordenSeleccionada.numero}</p>
-                        <p><strong>Mesa:</strong> {ordenSeleccionada.mesa}</p>
-                        <p><strong>Cliente:</strong> {ordenSeleccionada.cliente}</p>
-                        <p><strong>Estado:</strong> <span className={`estado-${ordenSeleccionada.estado.toLowerCase()}`}>{ordenSeleccionada.estado}</span></p>
-                        <p><strong>Total:</strong> <span className="text-success">${ordenSeleccionada.total}</span></p>
-                        <hr />
-                        <p><strong>Platillos:</strong></p>
-                        <ul className="platillos-lista">
-                            {ordenSeleccionada.platillos.map((platillo, index) => (
-                                <li key={index} className="platillo-item">
-                                    {platillo.nombre} - <span className="cantidad">Cantidad: {platillo.cantidad}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <hr />
-                        <p><strong>Cambiar Estado:</strong></p>
-                        <select
-                            value={ordenSeleccionada.estado}
-                            onChange={(e) => handleChangeEstado(ordenSeleccionada.numero, e.target.value)}
-                            className="form-select estado-select"
-                        >
-                            <option value="Pendiente">Pendiente</option>
-                            <option value="En proceso">En proceso</option>
-                            <option value="Entregado">Entregado</option>
-                        </select>
-                    </div>
-                ) : (
-                    <p className="text-muted">No hay información disponible</p>
-                )}
-            </Modal.Body>
-            <Modal.Footer className="custom-modal-footer">
-                <Button variant="secondary" onClick={handleClose} className="btn-close-modal">
-                    Cerrar
-                </Button>
-            </Modal.Footer>
-        </Modal>
+            <Modal show={showModal} onHide={handleClose} centered className="custom-modals"
+
+                backdrop={false}
+            >
+                <Modal.Header closeButton className="custom-modal-headers" >
+                    <Modal.Title>
+                        <i className="bi bi-receipt-cutoff"></i> Detalles del Pedido
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="custom-modal-bodys">
+                    {ordenSeleccionada ? (
+                        <div>
+                            <p><strong>Orden N°:</strong> {ordenSeleccionada.numero}</p>
+                            <p><strong>Mesa:</strong> {ordenSeleccionada.mesa}</p>
+                            <p><strong>Cliente:</strong> {ordenSeleccionada.cliente}</p>
+                            <p><strong>Estado:</strong> <span className={`estado-${ordenSeleccionada.estado.toLowerCase()}`}>{ordenSeleccionada.estado}</span></p>
+                            <p><strong>Total:</strong> <span className="text-success">${ordenSeleccionada.total}</span></p>
+                            <hr />
+                            <p><strong>Platillos:</strong></p>
+                            <ul className="platillos-lista">
+                                {ordenSeleccionada.platillos.map((platillo, index) => (
+                                    <li key={index} className="platillo-item">
+                                        {platillo.nombre} - <span className="cantidad">Cantidad: {platillo.cantidad}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <hr />
+                            <p><strong>Cambiar Estado:</strong></p>
+                            <select
+                                value={ordenSeleccionada.estado}
+                                onChange={(e) => handleChangeEstado(ordenSeleccionada.numero, e.target.value)}
+                                className="form-select estado-select"
+                            >
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Entregado">Entregado</option>
+                            </select>
+                        </div>
+                    ) : (
+                        <p className="text-muted">No hay información disponible</p>
+                    )}
+                </Modal.Body>
+                <Modal.Footer className="custom-modal-footer">
+                    <Button variant="secondary" onClick={handleClose} className="btn-close-modal">
+                        Cerrar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
-        
+
     )
 }
 

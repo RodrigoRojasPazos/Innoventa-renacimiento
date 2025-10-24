@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import './css_Ordenes/cardplatillo.css';
 
 function CardPlatillo({ platillo, onAddToCart }) {

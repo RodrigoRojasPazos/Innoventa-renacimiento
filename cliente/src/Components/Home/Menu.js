@@ -1,4 +1,4 @@
-const nav = document.querySelector("#nav-1");
+﻿const nav = document.querySelector("#nav-1");
 const abrir = document.querySelector("#abrir");
 const cerrar = document.querySelector("#cerrar");
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import "./css_Empleado/AgregarEmpleado.css";
 
 function AgregarEmpleado({ onRegresar }) {
@@ -29,7 +29,7 @@ function AgregarEmpleado({ onRegresar }) {
 
     try {
       // 2. Enviar datos al servidor
-      const response = await fetch("http://localhost:4000/agregar-empleado", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/agregar-empleado`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

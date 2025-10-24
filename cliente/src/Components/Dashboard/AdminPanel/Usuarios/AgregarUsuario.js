@@ -1,4 +1,4 @@
-import "./css_Usuario/AgregarUsuario.css";
+﻿import "./css_Usuario/AgregarUsuario.css";
 import React, { useState, useEffect } from "react";
 
 function AgregarUsuario({ onRegresar }){
@@ -20,8 +20,8 @@ function AgregarUsuario({ onRegresar }){
         // Cargar opciones de empleados y roles (restaurantes table doesn't exist)
         const fetchData = async () => {
             try {
-                const empleadosResponse = await fetch("http://localhost:4000/getEmpleados");
-                const rolesResponse = await fetch("http://localhost:4000/getRoles");
+                const empleadosResponse = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/getEmpleados`);
+                const rolesResponse = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/getRoles`);
 
                 setEmpleados(await empleadosResponse.json());
                 // setRestaurantes([{pk_restaurante: 1, nombre: 'Default'}]); // Default if needed
@@ -56,7 +56,7 @@ function AgregarUsuario({ onRegresar }){
         };
     
         try {
-            const response = await fetch("http://localhost:4000/postUsuario", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/postUsuario`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

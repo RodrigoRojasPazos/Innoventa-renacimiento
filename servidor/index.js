@@ -10,7 +10,12 @@ const httpServer = http.createServer(app);
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.urlencoded({ extended: true }));
 
 
@@ -44,7 +49,8 @@ const endPoints = require('./routes/endPoints');
 app.use('/', endPoints);
 
 
-const PORT = process.env.PORT || 4000;
+// Backend siempre usa el puerto 4000 internamente (nginx en puerto 80 hace proxy)
+const PORT = 4000;
 
 
 httpServer.listen(PORT, () => {

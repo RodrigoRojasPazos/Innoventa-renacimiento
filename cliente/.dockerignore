@@ -1,0 +1,23 @@
+# Ignorar node_modules
+node_modules
+npm-debug.log
+
+# Ignorar archivos de desarrollo
+.env
+.env.local
+.env.*.local
+
+# Ignorar build (se genera en Docker)
+# build
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar configuración de VSCode
+.vscode
+
+# Ignorar archivos de prueba
+**/*.test.js
+**/*.spec.js
+src/setupTests.js

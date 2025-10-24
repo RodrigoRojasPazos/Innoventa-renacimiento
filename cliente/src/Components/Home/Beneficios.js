@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'bootstrap';
 import './css/Casos.css';
 import Vector from "../../Assets/Img_Home_new/Vector.png"

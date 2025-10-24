@@ -1,4 +1,4 @@
-import "./css/Nosotros2.css";
+﻿import "./css/Nosotros2.css";
 import Venta2 from "../../Assets/Img_Home_new/venta2.png";
 import ventaPalomi from "../../Assets/Img_Home_new/Vectordepalomita.png";
 import { Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useState, useRef } from 'react';
 import Logo from '../../../../Assets/Logo/logo-login.png';
 import axios from 'axios';
@@ -54,7 +54,7 @@ function PagosPanel() {
 
     const fetchOrdenesListas = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/getPedidosListo');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getPedidosListo`);
             const datos = response.data.map((orden) => ({
                 numero: orden.id,
                 mesa: orden.numeroMesa,
@@ -186,7 +186,7 @@ function PagosPanel() {
         console.log("Payload enviado:", payload);
     
         try {
-            const response = await axios.post('http://localhost:4000/realizar-pago', payload);
+            const response = await axios.post(`${process.env.REACT_APP_API_URL || '/api'}/realizar-pago`, payload);
     
             if (response.status === 200) {
                 Swal.fire({

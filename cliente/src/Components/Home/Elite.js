@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'bootstrap';
 import './css/Elite.css';
 import imagen16 from '../../Assets/Img_Home/imagen16-editada.JPG';

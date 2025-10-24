@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import "./css_roles/Agregar_Roles.css";
 import Swal from "sweetalert2";
 
@@ -13,7 +13,7 @@ function EditarRol({ onRegresar, rolId }) {
     useEffect(() => {
         const fetchRolData = async () => {
             try {
-                const response = await fetch(`http://localhost:4000/getRolId/${rolId}`);
+                const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/getRolId/${rolId}`);
                 if (response.ok) {
                     const rolData = await response.json();
                     console.log("Datos del rol (antes de actualizar formData):", rolData);
@@ -51,7 +51,7 @@ function EditarRol({ onRegresar, rolId }) {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:4000/updateRoles/${rolId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/updateRoles/${rolId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

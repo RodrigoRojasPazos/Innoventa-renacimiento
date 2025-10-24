@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -17,7 +17,7 @@ function FormularioAgregarPlatillo({ onRegresar }) {
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/getCategorias');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getCategorias`);
         setCategorias(response.data);
       } catch (error) {
         console.error('Error al obtener las categorías:', error);
@@ -26,7 +26,7 @@ function FormularioAgregarPlatillo({ onRegresar }) {
 
     const fetchProductos = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/get-productos-nombre');
+        const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/get-productos-nombre`);
         setProductosDisponibles(response.data);
       } catch (error) {
         console.error('Error al obtener los productos:', error);
@@ -91,7 +91,7 @@ function FormularioAgregarPlatillo({ onRegresar }) {
 
       console.log("Datos enviados:", datosPlatillo);
 
-      const respuesta = await axios.post('http://localhost:4000/agregar-platillo', datosPlatillo);
+      const respuesta = await axios.post(`${process.env.REACT_APP_API_URL || '/api'}/agregar-platillo`, datosPlatillo);
       Swal.fire("Éxito", respuesta.data.message, 'success');
       onRegresar();
     } catch (error) {
@@ -108,7 +108,7 @@ function FormularioAgregarPlatillo({ onRegresar }) {
     formData.append("image", file);
 
     axios
-      .post("http://localhost:4000/upload-image", formData)
+      .post(`${process.env.REACT_APP_API_URL || '/api'}/upload-image`, formData)
       .then((response) => {
         console.log("URL de imagen recibida:", response.data.url);
         setImg(response.data.url);

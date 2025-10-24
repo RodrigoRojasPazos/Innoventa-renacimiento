@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+﻿import React, { useRef } from 'react';
 import './css_Ordenes/cardordenes.css';
 
 const CardOrdenes = ({ ordenes, onShowDetalle }) => {

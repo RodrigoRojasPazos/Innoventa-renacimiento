@@ -1,4 +1,4 @@
-import DataTable from 'react-data-table-component';
+﻿import DataTable from 'react-data-table-component';
 import './css_Inventario/Inventario.css';
 import React, { useEffect, useState } from 'react';
 import ClientAxios from '../../../../Config/axios';
@@ -12,7 +12,7 @@ function InventarioPanel(){
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [mostrarAddProducto, setMostrarAddProducto] = useState(false);
 
-    const URL = 'http://localhost:4000/getInventario'
+    const URL = `${process.env.REACT_APP_API_URL || '/api'}/getInventario`
 
     const showData = async () => {
         const response = await fetch(URL);

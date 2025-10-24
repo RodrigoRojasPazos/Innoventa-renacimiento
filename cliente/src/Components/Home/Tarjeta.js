@@ -1,4 +1,4 @@
-import './css/Tarjeta.css';
+﻿import './css/Tarjeta.css';
 import tarjetacrd from "../../Assets/Logo/tarjetacrd.png"
 import tarjetacrd2 from "../../Assets/Logo/imagen-crd-2.png";
 import mex from "../../Assets/Logo/mex.png";

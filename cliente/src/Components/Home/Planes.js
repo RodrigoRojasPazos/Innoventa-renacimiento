@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'bootstrap';
 import './css/Planes.css';
 import { Link } from 'react-router-dom';

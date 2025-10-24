@@ -1,4 +1,4 @@
-import DataTable from 'react-data-table-component';
+﻿import DataTable from 'react-data-table-component';
 import './css_Platillos/platillo.css'
 import React, { useEffect, useState } from 'react';
 import AgregarPlatillo from './AgregarPlatillo';
@@ -12,7 +12,7 @@ function PlatillosPanel(){
     const [filteredPlatillos, setFilteredPlatillos] = useState([]);
     const [mostrarAddPlatillo, setMostrarAddPlatillo] = useState(false);
 
-    const URL = 'http://localhost:4000/getPlatillos'
+    const URL = `${process.env.REACT_APP_API_URL || '/api'}/getPlatillos`
 
     const showData = async () => {
         const response = await fetch(URL);
@@ -30,7 +30,7 @@ function PlatillosPanel(){
                 console.error("El ID es undefined");
                 return;
             }
-            await ClientAxios.delete(`http://localhost:4000/eliminar-platillo/${id}`);
+            await ClientAxios.delete(`${process.env.REACT_APP_API_URL || '/api'}/eliminar-platillo/${id}`);
             const updateProducts = platillos.filter(row => row.id !== id); // Filtrar por `id`
             setPlatillos(updateProducts);
             setFilteredPlatillos(updateProducts);

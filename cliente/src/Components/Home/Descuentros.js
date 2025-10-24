@@ -1,4 +1,4 @@
-import "./css/Descuentos.css";
+﻿import "./css/Descuentos.css";
 import Logo from "../../Assets/Logo/logo-login.png"
 
 function Descuentos(){

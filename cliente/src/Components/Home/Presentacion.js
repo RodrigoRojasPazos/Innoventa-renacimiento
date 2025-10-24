@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/Presentacion.css';
 import { Button } from 'bootstrap';
 import imagen1 from "../../Assets/Img_Home/imagen1_editada_presentacion.JPG"

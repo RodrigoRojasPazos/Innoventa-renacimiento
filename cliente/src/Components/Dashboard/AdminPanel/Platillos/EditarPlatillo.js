@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios'
 import "./css_Platillos/Estilos-Platillos.css";
@@ -17,7 +17,7 @@ function EditarPlatillo({ onRegresar, platilloId }) {
     useEffect(() => {
         const fetchPlatillo = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/get-platillo/${platilloId}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/get-platillo/${platilloId}`);
                 const data = response.data;
 
                 setNombre(data.nombre);
@@ -32,12 +32,12 @@ function EditarPlatillo({ onRegresar, platilloId }) {
         };
 
         const fetchCategorias = async () => {
-            const response = await axios.get('http://localhost:4000/getCategorias');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/getCategorias`);
             setCategorias(response.data)
         };
 
         const fetchProductos = async () => {
-            const response = await axios.get('http://localhost:4000/get-productos-nombre');
+            const response = await axios.get(`${process.env.REACT_APP_API_URL || '/api'}/get-productos-nombre`);
             setProductosDisponibles(response.data);
         };
 
@@ -64,7 +64,7 @@ function EditarPlatillo({ onRegresar, platilloId }) {
                 productos,
             };
             
-            const respuesta = await axios.put(`http://localhost:4000/editar-platillo/${platilloId}`, datosPlatillo);
+            const respuesta = await axios.put(`${process.env.REACT_APP_API_URL || '/api'}/editar-platillo/${platilloId}`, datosPlatillo);
             Swal.fire("Éxito", "Platillo actualizado correctamente.", "success");
             onRegresar();
         } catch (error) {
@@ -78,7 +78,7 @@ function EditarPlatillo({ onRegresar, platilloId }) {
         const formData = new FormData();
         formData.append("image", file);
 
-        axios.post("http://localhost:4000/upload-image", formData)
+        axios.post(`${process.env.REACT_APP_API_URL || '/api'}/upload-image`, formData)
             .then((response) => {
                 setImg(response.data.url);
             })

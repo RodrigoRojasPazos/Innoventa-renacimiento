@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState } from "react";
 import ClientAxios from "../../../../Config/axios";
 import Swal from "sweetalert2";
 
@@ -22,7 +22,7 @@ function EditarEmpleado({ empleadoPk, onRegresar }) {
   useEffect(() => {
     const fetchEmpleadoData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/getEmpleadoId/${empleadoPk}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL || '/api'}/getEmpleadoId/${empleadoPk}`);
         if (response.ok){
           const empleadoData = await response.json();
           console.log("Datos del empleado (antes de actualizar): ", empleadoData);
@@ -101,7 +101,7 @@ function EditarEmpleado({ empleadoPk, onRegresar }) {
     try {
 
       const response = await fetch(
-        `http://localhost:4000/updateEmpleado/${empleadoId}`,
+        `${process.env.REACT_APP_API_URL || '/api'}/updateEmpleado/${empleadoId}`,
         {
           method: "POST",
           headers: {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import './css_Usuario/Usuario.css';
 import AgregarUsuario from './AgregarUsuario';
 import EditarUsuario from './EditarUsuario'; // Importar EditarUsuario
@@ -14,7 +14,7 @@ function UsuariosPanel() {
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
 
     // Usuarios table doesn't exist in the schema - using empleados instead
-    const URL = 'http://localhost:4000/getEmpleados';
+    const URL = `${process.env.REACT_APP_API_URL || '/api'}/getEmpleados`;
 
     const showData = async () => {
         try {

@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
 import VectorPalomita from "../../Assets/Img_Home_new/Vectordepalomita.png";
 import venta1 from "../../Assets/Img_Home_new/venta1.png";
 import './css/Nosotros.css';

@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+﻿import 'bootstrap/dist/css/bootstrap.min.css';
 //import './css/Presentacion.css';
 import { Button } from 'bootstrap';
 import './css/Funcionalidades.css'
